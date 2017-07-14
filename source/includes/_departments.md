@@ -1,36 +1,61 @@
 # Departments
+The Echonio API allows you to create, delete, and update your departments. You can retrieve individual departments as well as a list of all your departments.
+You can also assign an operator to a department or unassign an operator from it, And retrieve list of operators of a department.
 
 ## The department object
+Attributes | Type | Description
+--------- | ------- | -------
+id | UUID | Unique identifier for the object
+organizationId | UUID | Unique identifier for the organization
+slug | String | Unique slug for department
+title | String | title of the department
 
 ## Create a department
+> Definition:
+
+```curl
+  POST http://api.echon.io/v1/departments
+```
+> Example Request:
 
 ```curl
 curl -X POST \
-  http://echon.io/v1/departments \
-  -H 'authorization: bearer 41d7404c0c3e4f7abe39591559250c67j07Pm1ij05b9TPNGTxXmB8bsXVriHBxCuYjyiFvEsDq6PRx6oLmX1f73ZAEDuDnkqhRBwAVIuR0dbVrNybnTV27tQRADMsy05mm9oW2BpVYnxp6RFRtN130BegjhSaxb6hLHf72AJQksALxgHM2nDky1BcXVy2SGciQshEIncmXtfELNKHgbEZn5vdcTb2kGShyHI8TMYX5oIBb0ycL0hvStSjaIiV69' \
+  http://api.echon.io/v1/departments \
+  -H 'authorization: bearer 2faafd13b0f64a388c57de929a8b6a54X5WC3JRlQrwgi36N2QsTyKBLiOJwcfiJNvfnUlUHMaHDUvcP6211ls2BFqj35UnCQ2kxltWBTul0dK2MNC5rBRWoJ9GGhIXfq4YLB57rloXwRci5QmSJK7EtZMjuFDC9nmQnwaoSGtL9r9A5P85vma508eaiYcJunNTJw0m0QkLJWEKOmiTUbm0I4vUbUro2GqsiX2d5vm58IRg6VO8LVZgC27UbYNcA' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'postman-token: 9520003e-bb53-8faf-6913-1a16cdb38b22' \
   -d 'title=%D8%AA%D9%88%D8%B3%D8%B9%D9%87&slug=develop'
 ```
-> The above command returns JSON structured like this:
+> Example Response:
 
 ```json
-
+{
+  "id": "11814c45-d23e-49bc-89dc-aa91f6bd63c8",
+  "organizationId": "6ab965cb-a242-4b9f-a868-0a946a2c3cf5",
+  "slug": "support",
+  "title": "support"
+}
 ```
+Creates a new department object.
+
+###Returns
+Returns a department object if the call succeeded. The returned object contains department's ID, organization's ID and the slug and title you defined when creating the department. 
+
+
 
 ## Retrieve a department
 > Definition:
 
 ```curl
-
+  GET http://api.echon.io/v1/departments/{DEPARTMENT_ID}
 ```
 > Example Request:
 
 ```curl
 curl -X GET \
-  http://echon.io/v1/departments/1dd01217-1061-482e-b00b-84de0bb11dc4 \
-  -H 'authorization: bearer 115ced0cdb4244e5a2273bcd02bd46dbefHEcwT03SAsFT6EwxLwCFsFMJsVu11r9e5DOYE4YBp7NK5kY4thWSLGaUkKrb9HL2zHkt6A0Lyn6oSz63hwoYONx0Lz5VxV2HglRJfTmEPX575l1tkZ2P6GWZXXA3A7k0ZA1qUTxZ2y9hXrdyyTAeCXyMNAwhN3JxDV5SCHQfb5jGvnEIfmbJ2wuxDL4OaIEVdVTApiKw3asAGKOCyL1xOJL9axRKjf' \
+  http://api.echon.io/v1/departments/11814c45-d23e-49bc-89dc-aa91f6bd63c8 \
+  -H 'authorization: bearer 2faafd13b0f64a388c57de929a8b6a54X5WC3JRlQrwgi36N2QsTyKBLiOJwcfiJNvfnUlUHMaHDUvcP6211ls2BFqj35UnCQ2kxltWBTul0dK2MNC5rBRWoJ9GGhIXfq4YLB57rloXwRci5QmSJK7EtZMjuFDC9nmQnwaoSGtL9r9A5P85vma508eaiYcJunNTJw0m0QkLJWEKOmiTUbm0I4vUbUro2GqsiX2d5vm58IRg6VO8LVZgC27UbYNcA' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'postman-token: cee3d411-0739-0271-cd02-38221cc4e21d' \
@@ -39,22 +64,31 @@ curl -X GET \
 > Example Response:
 
 ```json
-
+{
+  "id": "11814c45-d23e-49bc-89dc-aa91f6bd63c8",
+  "organizationId": "6ab965cb-a242-4b9f-a868-0a946a2c3cf5",
+  "slug": "support",
+  "title": "support"
+}
 ```
+Retrieves an existing department. You need only supply the unique department identifier that was returned upon department creation.
+
+###Returns
+Returns a department object if a valid identifier was provided.
 
 
 ## Update a department
 > Definition:
 
 ```curl
-
+  PUT http://api.echon.io/v1/departments/{DEPARTMENT_ID}
 ```
 > Example Request:
 
 ```curl
 curl -X PUT \
-  http://echon.io/v1/departments/1dd01217-1061-482e-b00b-84de0bb11dc4 \
-  -H 'authorization: bearer f9cacb7e20a943719eb3fdfb6f51a101uzfNCsb93Vrs3sHy1Hd2G8Iys81i6pFxcl3AUw58yDloQvVajxcrVSepI83RisoK5R9n3aYQqD8YTE1yn9GmZWroMLqOH3vxLGAUwXeNjONa3owWQotsnDrlf9FGbIfnOptdrvuoBcBThsdUJJZRKUGqlfMT0ilzntmVWILwSzVF8JKKYEBmP1laPmVOAySO3gpuKJZDhyXWdPuBkDADnS0BzGKJE1Ma' \
+  http://api.echon.io/v1/departments/11814c45-d23e-49bc-89dc-aa91f6bd63c8 \
+  -H 'authorization: bearer 2faafd13b0f64a388c57de929a8b6a54X5WC3JRlQrwgi36N2QsTyKBLiOJwcfiJNvfnUlUHMaHDUvcP6211ls2BFqj35UnCQ2kxltWBTul0dK2MNC5rBRWoJ9GGhIXfq4YLB57rloXwRci5QmSJK7EtZMjuFDC9nmQnwaoSGtL9r9A5P85vma508eaiYcJunNTJw0m0QkLJWEKOmiTUbm0I4vUbUro2GqsiX2d5vm58IRg6VO8LVZgC27UbYNcA' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'postman-token: b57d2bdf-414c-aa01-ad31-c4dcd575bc22' \
@@ -63,22 +97,33 @@ curl -X PUT \
 > Example Response:
 
 ```json
-
+{
+  "id": "11814c45-d23e-49bc-89dc-aa91f6bd63c8",
+  "organizationId": "6ab965cb-a242-4b9f-a868-0a946a2c3cf5",
+  "slug": "support",
+  "title": "customer support"
+}
 ```
+Updates the specified department by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+This request accepts mostly the same arguments as the department creation call.
+
+### Returns
+Returns a department object with updated values in case of success.
+
 
 
 ## Delete a department
 > Definition:
 
 ```curl
-
+  DELETE http://api.echon.io/v1/departments/{DEPARTMENT_ID}
 ```
 > Example Request:
 
 ```curl
 curl -X DELETE \
-  http://echon.io/v1/departments/1dd01217-1061-482e-b00b-84de0bb11dc4 \
-  -H 'authorization: bearer 3220dc682996472b8fb1d16ad4506cdbeRoDRZJb3N5zQPde8wwH2liXOQpnH5ZQf5aYxiZn055cgfcUhLOTriQ0SfJsIXWamiGwDldhzNPGUoQwB9vBfgWo9GdpP7UCyBGYWbHPsgPZtns0TnkmsVJKe9EH6L1ESiLYNdMnaJQJncAgwWhQPBnK1xq71lZzTrOTTQXYTVofbYA6A2EAoNw8DdzPNB20rjveodM32jg4xTtg5K1Fjl78E50nVEgt' \
+  http://api.echon.io/v1/departments/11814c45-d23e-49bc-89dc-aa91f6bd63c8 \
+  -H 'authorization: bearer 2faafd13b0f64a388c57de929a8b6a54X5WC3JRlQrwgi36N2QsTyKBLiOJwcfiJNvfnUlUHMaHDUvcP6211ls2BFqj35UnCQ2kxltWBTul0dK2MNC5rBRWoJ9GGhIXfq4YLB57rloXwRci5QmSJK7EtZMjuFDC9nmQnwaoSGtL9r9A5P85vma508eaiYcJunNTJw0m0QkLJWEKOmiTUbm0I4vUbUro2GqsiX2d5vm58IRg6VO8LVZgC27UbYNcA' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'postman-token: d4bde47c-0f92-3988-addc-35c98d0c5540' \
@@ -87,22 +132,29 @@ curl -X DELETE \
 > Example Response:
 
 ```json
-
+{
+  "result": true,
+  "id": "11814c45-d23e-49bc-89dc-aa91f6bd63c8"
+}
 ```
+Permanently deletes a department.
+
+### Returns
+Returns an object with a true parameter and the ID of deleted department on success. If the department ID does not exist, this call returns an error.
 
 
 ## List all departments
 > Definition:
 
 ```curl
-
+GET http://api.echon.io/v1/departments
 ```
 > Example Request:
 
 ```curl
 curl -X GET \
-  http://echon.io/v1/departments \
-  -H 'authorization: bearer 41d7404c0c3e4f7abe39591559250c67j07Pm1ij05b9TPNGTxXmB8bsXVriHBxCuYjyiFvEsDq6PRx6oLmX1f73ZAEDuDnkqhRBwAVIuR0dbVrNybnTV27tQRADMsy05mm9oW2BpVYnxp6RFRtN130BegjhSaxb6hLHf72AJQksALxgHM2nDky1BcXVy2SGciQshEIncmXtfELNKHgbEZn5vdcTb2kGShyHI8TMYX5oIBb0ycL0hvStSjaIiV69' \
+  http://api.echon.io/v1/departments \
+  -H 'authorization: bearer 2faafd13b0f64a388c57de929a8b6a54X5WC3JRlQrwgi36N2QsTyKBLiOJwcfiJNvfnUlUHMaHDUvcP6211ls2BFqj35UnCQ2kxltWBTul0dK2MNC5rBRWoJ9GGhIXfq4YLB57rloXwRci5QmSJK7EtZMjuFDC9nmQnwaoSGtL9r9A5P85vma508eaiYcJunNTJw0m0QkLJWEKOmiTUbm0I4vUbUro2GqsiX2d5vm58IRg6VO8LVZgC27UbYNcA' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'postman-token: 63affb74-62a7-77c7-fa2a-ae82d1eb6695' \
@@ -111,45 +163,68 @@ curl -X GET \
 > Example Response:
 
 ```json
-
+[
+  {
+    "id": "11814c45-d23e-49bc-89dc-aa91f6bd63c8",
+    "organizationId": "6ab965cb-a242-4b9f-a868-0a946a2c3cf5",
+    "slug": "support",
+    "title": "support"
+  },
+  {
+    "id": "2ad20706-aeb5-4ff8-a3b5-1196dc2d8428",
+    "organizationId": "6ab965cb-a242-4b9f-a868-0a946a2c3cf5",
+    "slug": "sales",
+    "title": "sales"
+  }
+]
 ```
+Returns list of your organization's departments. 
 
 
 ## Add operator to a department
 > Definition:
 
 ```curl
-
+  POST http://api.echon.io/v1/departments/{DEPARTMENT_ID}/operators/{OPERATOR_ID}
 ```
 > Example Request:
 
 ```curl
 curl -X POST \
-  http://echon.io/v1/departments/3e7aba04-629a-43d6-beba-e4022bb90461/operators/10441c40-8f6f-4350-9d16-52c4f0f06a33 \
-  -H 'authorization: bearer 41d7404c0c3e4f7abe39591559250c67j07Pm1ij05b9TPNGTxXmB8bsXVriHBxCuYjyiFvEsDq6PRx6oLmX1f73ZAEDuDnkqhRBwAVIuR0dbVrNybnTV27tQRADMsy05mm9oW2BpVYnxp6RFRtN130BegjhSaxb6hLHf72AJQksALxgHM2nDky1BcXVy2SGciQshEIncmXtfELNKHgbEZn5vdcTb2kGShyHI8TMYX5oIBb0ycL0hvStSjaIiV69' \
+  http://localhost:7337/v1/departments/11814c45-d23e-49bc-89dc-aa91f6bd63c8/operators \
+  -H 'authorization: bearer 2faafd13b0f64a388c57de929a8b6a54X5WC3JRlQrwgi36N2QsTyKBLiOJwcfiJNvfnUlUHMaHDUvcP6211ls2BFqj35UnCQ2kxltWBTul0dK2MNC5rBRWoJ9GGhIXfq4YLB57rloXwRci5QmSJK7EtZMjuFDC9nmQnwaoSGtL9r9A5P85vma508eaiYcJunNTJw0m0QkLJWEKOmiTUbm0I4vUbUro2GqsiX2d5vm58IRg6VO8LVZgC27UbYNcA' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
-  -H 'postman-token: 2ab77433-041d-271d-5456-591e14011a15'
+  -H 'postman-token: 58020537-a01f-a91d-609a-88dce47c1e88' \
+  -d operatorId=5fe9122c-2b6e-4b0f-b70f-2feb829cde69
 ```
 > Example Response:
 
 ```json
-
+{
+  "result": true,
+  "departmentId": "11814c45-d23e-49bc-89dc-aa91f6bd63c8",
+  "operatorId": "5fe9122c-2b6e-4b0f-b70f-2feb829cde69"
+}
 ```
+Assigns an operator to a department. 
+
+### Returns
+Returns an object with result property of true, department's ID and operator's ID in case of success.
 
 
 ## Remove operator from a department
 > Definition:
 
 ```curl
-
+  DELETE  http://api.echon.io/v1/departments/{DEPARTMENT_ID}/operators/{OPERATOR_ID}
 ```
 > Example Request:
 
 ```curl
 curl -X DELETE \
-  http://echon.io/v1/departments/1dd01217-1061-482e-b00b-84de0bb11dc4/operators/1a2a9733-c4d7-4f8c-81c4-b8b7628232b1 \
-  -H 'authorization: bearer 88fe8d1a6cfd408eba29b4c000427a7cH0NbzXX20ViFrGjfbPaiN57W4C8o73dzHKPrc561EDlqDJbLmTVmSJem86ueEMzcThuj89n4Ld1HHB8dGU72ojvwJakuFNKI3VBhFkhAHfi8pgl2icCyTkklcmwQ266tq4lHLsjanv9raufhP4gxWbvT6StWth8DGfDEJEC9AWLk5fbHNu2xFFLKE64sXgKGkm3MGVOtrTfDj1XTadcpG5uPbulDxoFz' \
+  http://api.echon.io/v1/departments/11814c45-d23e-49bc-89dc-aa91f6bd63c8/operators/5fe9122c-2b6e-4b0f-b70f-2feb829cde69 \
+  -H 'authorization: bearer 2faafd13b0f64a388c57de929a8b6a54X5WC3JRlQrwgi36N2QsTyKBLiOJwcfiJNvfnUlUHMaHDUvcP6211ls2BFqj35UnCQ2kxltWBTul0dK2MNC5rBRWoJ9GGhIXfq4YLB57rloXwRci5QmSJK7EtZMjuFDC9nmQnwaoSGtL9r9A5P85vma508eaiYcJunNTJw0m0QkLJWEKOmiTUbm0I4vUbUro2GqsiX2d5vm58IRg6VO8LVZgC27UbYNcA' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'postman-token: 55a3d022-2f7a-0765-44d7-22ecd132bae0'
@@ -157,22 +232,30 @@ curl -X DELETE \
 > Example Response:
 
 ```json
-
+{
+  "result": true,
+  "departmentId": "11814c45-d23e-49bc-89dc-aa91f6bd63c8",
+  "operatorId": "5fe9122c-2b6e-4b0f-b70f-2feb829cde69"
+}
 ```
+Unassigns an operator to a department. 
+
+### Returns
+Returns an object with result property of true, department's ID and operator's ID in case of success.
 
 
 ## List all operators of a department
 > Definition:
 
 ```curl
-
+  GET http://api.echon.io/v1/departments/{DEPARTMENT_ID}/operators
 ```
 > Example Request:
 
 ```curl
 curl -X GET \
-  http://echon.io/v1/departments/3e7aba04-629a-43d6-beba-e4022bb90461/operators \
-  -H 'authorization: bearer 41d7404c0c3e4f7abe39591559250c67j07Pm1ij05b9TPNGTxXmB8bsXVriHBxCuYjyiFvEsDq6PRx6oLmX1f73ZAEDuDnkqhRBwAVIuR0dbVrNybnTV27tQRADMsy05mm9oW2BpVYnxp6RFRtN130BegjhSaxb6hLHf72AJQksALxgHM2nDky1BcXVy2SGciQshEIncmXtfELNKHgbEZn5vdcTb2kGShyHI8TMYX5oIBb0ycL0hvStSjaIiV69' \
+  http://api.echon.io/v1/departments/11814c45-d23e-49bc-89dc-aa91f6bd63c8/operators \
+  -H 'authorization: bearer 2faafd13b0f64a388c57de929a8b6a54X5WC3JRlQrwgi36N2QsTyKBLiOJwcfiJNvfnUlUHMaHDUvcP6211ls2BFqj35UnCQ2kxltWBTul0dK2MNC5rBRWoJ9GGhIXfq4YLB57rloXwRci5QmSJK7EtZMjuFDC9nmQnwaoSGtL9r9A5P85vma508eaiYcJunNTJw0m0QkLJWEKOmiTUbm0I4vUbUro2GqsiX2d5vm58IRg6VO8LVZgC27UbYNcA' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/x-www-form-urlencoded' \
   -H 'postman-token: 8c6f864d-ab74-68ca-e109-674c0f38cd2b' \
@@ -181,5 +264,31 @@ curl -X GET \
 > Example Response:
 
 ```json
-
+{
+  "id": "11814c45-d23e-49bc-89dc-aa91f6bd63c8",
+  "organizationId": "6ab965cb-a242-4b9f-a868-0a946a2c3cf5",
+  "slug": "support",
+  "title": "support",
+  "createdAt": "2017-07-12T14:37:41.042Z",
+  "updatedAt": "2017-07-12T14:37:41.042Z",
+  "deletedAt": null,
+  "operators": [
+    {
+      "id": "5fe9122c-2b6e-4b0f-b70f-2feb829cde69",
+      "organizationId": "6ab965cb-a242-4b9f-a868-0a946a2c3cf5",
+      "userId": "538de4e9-8859-4edb-9cee-f52c17f4d57a",
+      "avatarUploadedFileId": null,
+      "actions": {
+        "superuser": true
+      },
+      "createdAt": null,
+      "updatedAt": null,
+      "deletedAt": null,
+      "departmentsOperators": {
+        "departmentId": "4b7c98de-98af-432f-bbf2-8a046bd8a3a6"
+      }
+    }
+  ]
+}
 ```
+Returns information about the specified department and list of operators assigned to it. 

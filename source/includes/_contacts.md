@@ -23,7 +23,7 @@ responder | No | Name of who may respond
 >Definition:
 
 ```curl
-  POST http://api.api.echon.io/v1/customers/61d9ebbf-084f-4221-ad71-d45d4b1a6ff1/contacts
+  POST http://api.api.echon.io/v1/customers/{CUSTOMER_ID}/contacts
 ```
 > Example Request:
 
@@ -60,7 +60,7 @@ Returns a contact object if the call succeeded. The returned object will have an
 > Definition:
 
 ```curl
-  GET http://api.echon.io/v1/customers/61d9ebbf-084f-4221-ad71-d45d4b1a6ff1/contacts/bae0fe10-d4f7-4b1a-a2f6-2d97e4f5b5f3
+  GET http://api.echon.io/v1/customers/{CUSTOMER_ID}/contacts/{CONTACT_ID}
 ```
 > Example Request:
 
@@ -97,7 +97,7 @@ Returns a contact object if a valid identifier was provided.
 > Definition:
 
 ```curl
-  PUT http://api.echon.io/v1/customers/61d9ebbf-084f-4221-ad71-d45d4b1a6ff1/contacts/bae0fe10-d4f7-4b1a-a2f6-2d97e4f5b5f3
+  PUT http://api.echon.io/v1/customers/{CUSTOMER_ID}/contacts/{CONTACT_ID}
 ```
 > Example Request:
 
@@ -135,7 +135,7 @@ Returns a contact object with updated values in case of success.
 > Definition:
 
 ```curl
-  DELETE http://api.echon.io/v1/customers/61d9ebbf-084f-4221-ad71-d45d4b1a6ff1/contacts/bae0fe10-d4f7-4b1a-a2f6-2d97e4f5b5f3
+  DELETE http://api.echon.io/v1/customers/{CUSTOMER_ID}1/contacts/{CONTACT_ID}
 ```
 > Example Request:
 
@@ -164,7 +164,7 @@ Returns an object with a true parameter and the ID of deleted contact on success
 > Definition:
 
 ```curl
-  GET http://api.echon.io/v1/customers/61d9ebbf-084f-4221-ad71-d45d4b1a6ff1/contacts
+  GET http://api.echon.io/v1/customers/{CUSTOMER_ID}/contacts
 ```
 > Example Request:
 

@@ -235,7 +235,7 @@ curl -X DELETE \
 Permanently deletes a customer and events for that customer.
 
 ### Returns
-Returns an object with a true parameter and the id of deleted customer on success. If the customer ID does not exist, this call returns an error.
+Returns an object with a true parameter and the ID of deleted customer on success. If the customer ID does not exist, this call returns an error.
 
 ## List all customers
 > Definition:
@@ -349,7 +349,7 @@ Returns list of your customers. The customers are returned sorted by update date
 > Definition:
 
 ```curl
-POST http://api.echon.io/v1/customers/61d9ebbf-084f-4221-ad71-d45d4b1a6ff1/tags
+POST http://api.echon.io/v1/customers/{CUSTOMER_ID}/tags
 ```
 > Example Request:
 
@@ -384,16 +384,16 @@ curl -X POST \
   }
 }
 ```
-Adds a tag you have defined before in #settings to the specific customer by passing tag's id as 'tagId' parameter in request.
+Adds a tag you have defined before in #settings to the specific customer by passing tag's ID as 'tagId' parameter in request.
 
 ### Returns
-Returns an object with result property of true, customer's id, tag's id and the created 'add-tag' timeline event in case of success.
+Returns an object with result property of true, customer's ID, tag's ID and the created 'add-tag' timeline event in case of success.
 
 ## Remove tag from customer
 > Definition:
 
 ```curl
-DELETE http://api.echon.io/v1/customers/61d9ebbf-084f-4221-ad71-d45d4b1a6ff1/tags/9639b18c-13eb-4ccb-a3f1-9ee75c6a4a77
+DELETE http://api.echon.io/v1/customers/{CUSTOMER_ID}/tags/{TAG_ID}
 ```
 > Example Request:
 
